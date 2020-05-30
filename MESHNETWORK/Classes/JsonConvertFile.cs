@@ -26,6 +26,7 @@ namespace MESHNETWORK.Classes
             {
                 main["NextIndex"] = Logic.Objects.Knots.Count;
                 main["Knots"] = JArray.FromObject(List);
+                KnotSave.NextId = 0;
             }
 
             string json = main.ToString();

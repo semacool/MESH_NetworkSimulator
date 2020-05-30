@@ -11,7 +11,7 @@ namespace MESHNETWORK.Classes
     /// </summary>
     class KnotSave : IKnotSave
     {
-        static uint NextId = 0;
+        public static uint NextId = 0;
         public uint id { get; set; }
         public double xCord { get; set; }
         public double yCord { get; set; }

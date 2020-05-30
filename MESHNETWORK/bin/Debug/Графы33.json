@@ -1,0 +1,29 @@
+{
+  "NextIndex": 3,
+  "Knots": [
+    {
+      "id": 0,
+      "xCord": 493.0,
+      "yCord": 65.039999999999992,
+      "radius": 100.0,
+      "source": false,
+      "target": false
+    },
+    {
+      "id": 1,
+      "xCord": 154.0,
+      "yCord": 103.03999999999999,
+      "radius": 100.0,
+      "source": false,
+      "target": false
+    },
+    {
+      "id": 2,
+      "xCord": 301.0,
+      "yCord": 123.03999999999999,
+      "radius": 148.0,
+      "source": true,
+      "target": false
+    }
+  ]
+}
