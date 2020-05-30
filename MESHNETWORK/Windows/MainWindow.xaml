@@ -1,0 +1,55 @@
+﻿<Window x:Class="MESHNETWORK.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MESHNETWORK"
+        xmlns:contr="clr-namespace:MESHNETWORK.MyControls"   
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--#region NewRegion -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" Click="OpenFile_Click"></MenuItem>
+                <MenuItem Header="Сохранить" Click="SaveFile_Click" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Цвета" Click="ColorConfig_Click"></MenuItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Масштаб"></TextBlock>
+                    <Slider x:Name="ZoomSlider" MinWidth="200" Background="{x:Null}" Maximum="1" SmallChange="0.01" Value="1" Minimum="0.1"/>
+                </StackPanel>
+            </MenuItem>
+            <MenuItem Header="Редактировать">
+                <MenuItem Header="Очистить поле" Click="ClearCanvas_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <!--#endregion-->
+
+        <!--#region Поле-->
+        <Canvas x:Name="Can" Grid.Row="1" Background="{Binding DataContext, RelativeSource={RelativeSource Self}}" Width="19200" Height="10800" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="{Binding Value, ElementName=ZoomSlider}" ScaleY="{Binding Value, ElementName=ZoomSlider}"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Name="AddPoint" Click="AddPoint_Click"></MenuItem>
+                    <MenuItem Header="Удалить" Name="DeletePoint" Click="DeletePoint_Click"></MenuItem>
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </Canvas>
+        <!--#endregion-->
+        
+    </Grid>
+</Window>
