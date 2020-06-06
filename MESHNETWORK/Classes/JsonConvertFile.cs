@@ -42,9 +42,11 @@ namespace MESHNETWORK.Classes
                 KnotVisual.NextId = JObject.Parse(json)["NextIndex"].Value<uint>();
 
                 IEnumerable<IKnotSave> enumerable = 
-                    JsonConvert.DeserializeObject<List<KnotSave>>(JObject.Parse(json)["Knots"].ToString()); //Ковариантность
-
-                Logic.Objects.KnotsSave = enumerable.ToList();
+                     JsonConvert.DeserializeObject<List<KnotSave>>
+                    (
+                        JObject.Parse(json)["Knots"].ToString()
+                    );
+                Logic.Objects.KnotsSave = enumerable.ToList();//Ковариантность     
             }
         }
     }

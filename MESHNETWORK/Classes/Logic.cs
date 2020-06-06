@@ -17,10 +17,24 @@ namespace MESHNETWORK.Classes
 
         public static JsonConvertFile Json = new JsonConvertFile();
 
+        public static ServerS Server = new ServerS();
+
+        /// <summary>
+        /// Очищение интерфейс данных  
+        /// </summary>
+        static  public void UpdateData()
+        {
+            SourceKnot = null;
+            TargetKnot = null;
+            SourceKnot = null;
+
+            Objects.Knots.Clear();
+        }
+
         #region Текущие активные Элементы
         public static MyControls.KnotVisual SourceKnot;
         public static MyControls.KnotVisual CurrentKnot;
-        public static MyControls.KnotVisual TargetKnot; 
+        public static MyControls.KnotVisual TargetKnot;
         #endregion
     }
 }

@@ -33,6 +33,7 @@ namespace MESHNETWORK.MyControls
         public double radius { get; set; }
         public bool source { get; set; }
         public bool target { get; set; } 
+        public string name { get; set; }
         #endregion
 
         /// <summary>
@@ -62,7 +63,8 @@ namespace MESHNETWORK.MyControls
         /// <param name="Radius"></param>
         /// <param name="Source"></param>
         /// <param name="Target"></param>
-        public KnotVisual(uint Id, double XCord, double YCord, double Radius, bool Source, bool Target)
+        public KnotVisual(uint Id,string Name, double XCord, double YCord, double Radius,
+                            bool Source = false, bool Target = false)
         {
             InitializeComponent();
             DataContext = Logic.Config;
@@ -72,6 +74,7 @@ namespace MESHNETWORK.MyControls
             radius = Radius;
             source = Source;
             target = Target;
+            name = Name;
             
             this.Loaded += KnotVisual_Loaded;
         }

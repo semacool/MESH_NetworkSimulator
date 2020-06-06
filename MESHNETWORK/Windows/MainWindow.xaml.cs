@@ -74,7 +74,8 @@ namespace MESHNETWORK
             OFD.ShowDialog();
             if (OFD.FileName.EndsWith(".json")) 
             {
-                UpdateData();
+                Logic.UpdateData();
+                Can.Children.Clear();
                 Logic.Json.OpenFile<KnotSave>(OFD.FileName);
                 CreateCanvas();
             }      
@@ -82,8 +83,9 @@ namespace MESHNETWORK
 
         private void ClearCanvas_Click(object sender, RoutedEventArgs e)
         {
-            UpdateData();
-        } 
+            Logic.UpdateData();
+            Can.Children.Clear();
+        }
         #endregion
 
         /// <summary>
@@ -97,17 +99,11 @@ namespace MESHNETWORK
             }
         }
 
-        /// <summary>
-        /// Очищение всех данных
-        /// </summary>
-        private void UpdateData() 
-        {
-            Logic.SourceKnot = null;
-            Logic.TargetKnot = null;
-            Logic.SourceKnot = null;
+       
 
-            Logic.Objects.Knots.Clear();       
-            Can.Children.Clear();
+        private void SendServer_Click(object sender, RoutedEventArgs e)
+        {
+            new AutorizationPage().ShowDialog();
         }
     }
 }

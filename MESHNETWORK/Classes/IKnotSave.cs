@@ -17,5 +17,6 @@ namespace MESHNETWORK.Classes
         double radius { get; set; }
         bool source { get; set; }
         bool target { get; set; }
+        string name { get; set; }
     }
 }

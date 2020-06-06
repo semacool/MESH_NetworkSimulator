@@ -14,9 +14,13 @@ C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MESHNETWORK.exe
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MESHNETWORK.pdb
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MyControls\KnotVisual.g.cs
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MyControls\KnotVisual.baml
-C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MESHNETWORK.csprojAssemblyReference.cache
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\Windows\ColorPage.g.cs
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\Windows\ColorPage.baml
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\bin\Debug\Newtonsoft.Json.dll
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\bin\Debug\Newtonsoft.Json.xml
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MESHNETWORK.csproj.CopyComplete
+C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\Windows\AutorizationPage.g.cs
+C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\Windows\AutorizationPage.baml
+C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\Windows\ServerWindow.g.cs
+C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\Windows\ServerWindow.baml
+C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\MESHNETWORK.csprojAssemblyReference.cache

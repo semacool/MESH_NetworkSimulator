@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6651C438-3D5A-4B45-AB41-A6C0E82B2C11}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>MESHNETWORK</RootNamespace>
     <AssemblyName>MESHNETWORK</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -76,7 +76,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ServerS.cs" />
+    <Compile Include="Windows\ServerWindow.xaml.cs">
+      <DependentUpon>ServerWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MyControls\KnotVisual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AutorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,9 +105,13 @@
     <Compile Include="Classes\JsonConvertFile.cs" />
     <Compile Include="Classes\KnotSave.cs" />
     <Compile Include="Classes\Logic.cs" />
+    <Compile Include="Classes\Net.cs" />
     <Compile Include="Classes\Objects.cs" />
     <Compile Include="MyControls\KnotVisual.xaml.cs">
       <DependentUpon>KnotVisual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AutorizationPage.xaml.cs">
+      <DependentUpon>AutorizationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ColorPage.xaml.cs">
       <DependentUpon>ColorPage.xaml</DependentUpon>
@@ -108,6 +120,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\ServerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

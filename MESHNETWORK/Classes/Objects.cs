@@ -26,7 +26,7 @@ namespace MESHNETWORK.Classes
                 List<IKnotSave> ts = new List<IKnotSave>();
                 foreach (IKnotSave knot in Knots)
                 {
-                    ts.Add(new KnotSave(knot.id, knot.xCord, knot.yCord, knot.radius, knot.source, knot.target));
+                    ts.Add(new KnotSave(knot.id,knot.name, knot.xCord, knot.yCord, knot.radius, knot.source, knot.target));
                 }
                 return ts;
             }
@@ -36,7 +36,7 @@ namespace MESHNETWORK.Classes
                 List<IKnotSave> tv = new List<IKnotSave>();
                 foreach (IKnotSave knot in value)
                 {
-                    tv.Add(new KnotVisual(knot.id, knot.xCord, knot.yCord, knot.radius, knot.source, knot.target));
+                    tv.Add(new KnotVisual(knot.id,knot.name, knot.xCord, knot.yCord, knot.radius, knot.source, knot.target));
                 }
 
                 Knots = tv;
@@ -44,9 +44,12 @@ namespace MESHNETWORK.Classes
         } 
         #endregion
 
+        public List<Net> Nets { get; set; }
+
         public Objects()
         {
             Knots = new List<IKnotSave>();
+            Nets = new List<Net>();
         }
 
         

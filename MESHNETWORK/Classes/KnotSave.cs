@@ -18,8 +18,9 @@ namespace MESHNETWORK.Classes
         public double radius { get; set; }
         public bool source { get; set; }
         public bool target { get; set; }
+        public string name { get; set; }
 
-        public KnotSave(uint Id, double XCord, double YCord, double Radius, bool Source, bool Target) 
+        public KnotSave(uint Id, string Name, double XCord, double YCord, double Radius, bool Source = false, bool Target = false) 
         {
             id = NextId++;
             xCord = XCord;
@@ -27,6 +28,7 @@ namespace MESHNETWORK.Classes
             radius = Radius;
             source = Source;
             target = Target;
+            name = Name;
         }
     }
 }
