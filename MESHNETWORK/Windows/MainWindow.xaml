@@ -4,17 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MESHNETWORK"
-        xmlns:contr="clr-namespace:MESHNETWORK.MyControls"   
+        xmlns:contr="clr-namespace:MESHNETWORK.MyControls"        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="TBStyle">
+            <Setter Property="FontSize" Value="25"></Setter>
+            <Setter Property="Margin" Value="20,5,20,0"></Setter>
+            <Setter Property="Foreground" Value="#555555"></Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TBXStyle">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="20,5,20,5"></Setter>
+            <Setter Property="Foreground" Value="#555555"></Setter>
+            <Setter Property="SelectionBrush" Value="#555555"></Setter>
+            <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+            <Setter Property="Background" Value="#EEEEEE"></Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
-        <!--#region NewRegion -->
-        <Menu Grid.Row="0">
+
+        <!--#region Меню -->
+        <Menu Grid.Row="0" Panel.ZIndex="10">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть" Click="OpenFile_Click"></MenuItem>
                 <MenuItem Header="Сохранить" Click="SaveFile_Click" ></MenuItem>
@@ -53,6 +69,21 @@
             </Canvas.ContextMenu>
         </Canvas>
         <!--#endregion-->
-        
+        <Grid Grid.Row="2">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFCFCFCF" Offset="1"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <StackPanel Orientation="Horizontal" Name="Info" Height="45">
+                <TextBlock Style="{StaticResource TBStyle}" Text="Название: "></TextBlock>
+                <TextBox Style="{StaticResource TBXStyle}" Text="{Binding Path=Name}" Width="100"/>
+                <TextBlock Style="{StaticResource TBStyle}" Text="Радиус: "></TextBlock>
+                <TextBox Style="{StaticResource TBXStyle}" Text="{Binding Path=Radius}" Width="100"></TextBox>
+                <TextBlock Style="{StaticResource TBStyle}" Text="{Binding StringFormat=X: {0}, Path=CordX}"></TextBlock>
+                <TextBlock Style="{StaticResource TBStyle}" Text="{Binding StringFormat=Y: {0}, Path=CordY}"></TextBlock>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

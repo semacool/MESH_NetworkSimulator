@@ -22,60 +22,14 @@ namespace MESHNETWORK.MyControls
     /// <summary>
     /// Логика взаимодействия для KnotVisual.xaml
     /// </summary>
-    public partial class KnotVisual : UserControl, IKnotSave
+    public partial class KnotVisual : UserControl
     {
-
-        #region Переменные для сохранения
-        public static uint NextId = 0;
-        public uint id { get; set; }
-        public double xCord { get; set; }
-        public double yCord { get; set; }
-        public double radius { get; set; }
-        public bool source { get; set; }
-        public bool target { get; set; } 
-        public string name { get; set; }
-        #endregion
-
-        /// <summary>
-        /// Создание мышкой
-        /// </summary>
-        /// <param name="point"></param>
-        public KnotVisual(Point point)
+        public KnotSave ks;
+        public KnotVisual(KnotSave Ks)
         {
             InitializeComponent();
-            id = NextId++;
-            xCord = point.X;
-            yCord = point.Y;
-            radius = Radius.Width;
-            DataContext = Logic.Config;
-            source = false;
-            target = false;
-
-            this.Loaded += KnotVisual_Loaded;
-        }
-
-        /// <summary>
-        /// Создание из файла
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="XCord"></param>
-        /// <param name="YCord"></param>
-        /// <param name="Radius"></param>
-        /// <param name="Source"></param>
-        /// <param name="Target"></param>
-        public KnotVisual(uint Id,string Name, double XCord, double YCord, double Radius,
-                            bool Source = false, bool Target = false)
-        {
-            InitializeComponent();
-            DataContext = Logic.Config;
-            id = Id;
-            xCord = XCord;
-            yCord = YCord;
-            radius = Radius;
-            source = Source;
-            target = Target;
-            name = Name;
-            
+            DataContext = new DataContextForNode(Ks);
+            ks = Ks;
             this.Loaded += KnotVisual_Loaded;
         }
 
@@ -86,23 +40,29 @@ namespace MESHNETWORK.MyControls
         /// <param name="e"></param>
         private void KnotVisual_Loaded(object sender, RoutedEventArgs e)
         {
-            Canvas.SetLeft(this, xCord);
-            Canvas.SetTop(this, yCord);
-            Radius.Width = radius;
-            Radius.Height = radius;
-
-            if (source) 
+            Canvas.SetLeft(this, ks.CordX);
+            Canvas.SetTop(this, ks.CordY);
+            switch (ks.typeNode)
             {
-                SourceSelect();
+                case TypeNode.common:
+                    Point.Style = Resources["Common"] as Style;
+                    break;
+                case TypeNode.source:
+                    Point.Style = Resources["Source"] as Style;
+                    break;
+                case TypeNode.target:
+                    Point.Style = Resources["Target"] as Style;
+                    break;
             }
-            else if (target) 
-            {
-                TargetSelect();
-            }
+            Binding CordinateX = new Binding("CordX");
+            CordinateX.Source = ks;
+            Binding CordinateY = new Binding("CordY");
+            CordinateY.Source = ks;
+            this.SetBinding(Canvas.LeftProperty, CordinateX);
+            this.SetBinding(Canvas.TopProperty, CordinateY);
         }
 
         #region События мыши
-
         private void KnotVisual_MouseMove(object sender, MouseEventArgs e)
         {
             ChangePosition(e);
@@ -110,11 +70,15 @@ namespace MESHNETWORK.MyControls
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            CurrentSelect();
+            this.MouseMove += KnotVisual_MouseMove;
+            Logic.SelectVisualKnot = this;
+            this.SetValue(Canvas.ZIndexProperty, 3);
+            Logic.w.DataContext = this.ks;
         }
 
         private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            this.SetValue(Canvas.ZIndexProperty, 2);
             StopMove();
         }
 
@@ -130,104 +94,73 @@ namespace MESHNETWORK.MyControls
 
         private void UserControl_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            SourceTargetLogic();
-        }  
+            if (Logic.SourceVisualKnot == null) 
+            {
+                SelectSource();
+            }
+            else if(Logic.SourceVisualKnot == this)
+            {
+                ClearSource();
+            }
+            else
+            {
+                if (Logic.TargetVisualKnot == null)
+                {
+                    SelectTarget();
+                }
+                else if (Logic.TargetVisualKnot == this)
+                {
+                    ClearTarget();
+                }
+                else
+                {
+                    ClearTarget();
+                    SelectTarget();
+                }
+            }
+        }
         #endregion
 
-        #region Логика выбора типа узла
-        private void SourceTargetLogic() 
+        #region Повторяющийся код
+        private void ClearSource()
         {
-            if(Logic.SourceKnot == null || Equals(Logic.SourceKnot)) 
-            {
-                SourceSelect();
-            }
-            else 
-            {
-                TargetSelect();
-            }
+            Logic.SourceVisualKnot.ks.typeNode = TypeNode.common;
+            Logic.SourceVisualKnot.Point.Style = Resources["Common"] as Style;
+            Logic.SourceVisualKnot = null;
 
+            if (Logic.TargetVisualKnot != null)
+                ClearTarget();
         }
-        private void CurrentSelect() 
+        private void SelectSource()
         {
-            if (Logic.CurrentKnot != null)
-            {
-                if(!Logic.CurrentKnot.Equals(Logic.SourceKnot) && !Logic.CurrentKnot.Equals(Logic.TargetKnot))
-                {
-                    Logic.CurrentKnot.Radius.Style = Resources["RadiusOFF"] as Style;
-                    Logic.CurrentKnot.Point.Style = Resources["Common"] as Style;
-                }
-            }
-
-            StopMove();
-
-            Logic.CurrentKnot = this;
-            Logic.CurrentKnot.MouseMove += KnotVisual_MouseMove;
-            Logic.CurrentKnot.Radius.Style = Resources["RadiusON"] as Style;
-
-            if (!Equals(Logic.SourceKnot) && !Equals(Logic.TargetKnot))
-            {
-                Logic.CurrentKnot.Point.Style = Resources["Current"] as Style;
-            }
+            Logic.SourceVisualKnot = this;
+            Logic.SourceVisualKnot.ks.typeNode = TypeNode.source;
+            Logic.SourceVisualKnot.Point.Style = Resources["Source"] as Style;
         }
-        private void SourceSelect()
-        {   
-            if(Logic.SourceKnot != null) 
-            {
-                Logic.SourceKnot.Point.Style = Resources["Common"] as Style;
-                Logic.SourceKnot.Radius.Style = Resources["RadiusOFF"] as Style;
-                Logic.SourceKnot.source = false;
-                if (Equals(Logic.SourceKnot)) 
-                {
-                    TargetSelect();
-                    Logic.SourceKnot = null;
-                    return;
-                }
-            }
-
-            Logic.SourceKnot = this;
-            Logic.SourceKnot.Point.Style = Resources["Source"] as Style;
-            Logic.SourceKnot.Radius.Style = Resources["RadiusON"] as Style;      
-            Logic.SourceKnot.source = true;
-        }
-        private void TargetSelect()
+        private void ClearTarget()
         {
-            if(Logic.TargetKnot != null) 
-            {
-                Logic.TargetKnot.Point.Style = Resources["Common"] as Style;
-                Logic.TargetKnot.Radius.Style = Resources["RadiusOFF"] as Style;
-                Logic.TargetKnot.target = false;
-
-                if (Equals(Logic.TargetKnot) || Equals(Logic.SourceKnot))
-                {
-                    Logic.TargetKnot = null;
-                    return;
-                }
-            }
-            Logic.TargetKnot = this;
-            Logic.TargetKnot.Point.Style = Resources["Target"] as Style;
-            Logic.TargetKnot.target = true;
+            Logic.TargetVisualKnot.ks.typeNode = TypeNode.common;
+            Logic.TargetVisualKnot.Point.Style = Resources["Common"] as Style;
+            Logic.TargetVisualKnot = null;
         }
-
-
+        private void SelectTarget()
+        {
+            Logic.TargetVisualKnot = this;
+            Logic.TargetVisualKnot.ks.typeNode = TypeNode.target;
+            Logic.TargetVisualKnot.Point.Style = Resources["Target"] as Style;
+        } 
         #endregion
 
         #region Изменение позиции и радиуса
         private void StopMove()
         {
-            if (Logic.CurrentKnot != null)
-            {
-                Logic.CurrentKnot.MouseMove -= KnotVisual_MouseMove;
-            }
-            xCord = Canvas.GetLeft(this);
-            yCord = Canvas.GetTop(this);
+              this.MouseMove -= KnotVisual_MouseMove;
         }
         private void ChangeRadius(MouseWheelEventArgs e)
         {
-            if (Equals(Logic.SourceKnot))
+            if (this.Equals(Logic.SelectVisualKnot))
             {
-                Radius.Width += Radius.Width <= 50 ? 1 : e.Delta / 25;
-                Radius.Height += Radius.Height <= 50 ? 1 : e.Delta / 25;
-                radius = Radius.Width;
+                ks.Radius += Radius.Width <= 50 ? 1 : e.Delta / 25;
             }
         }
         private void ChangePosition(MouseEventArgs e)
@@ -235,11 +168,14 @@ namespace MESHNETWORK.MyControls
             double x = e.GetPosition(Parent as Canvas).X;
             double y = e.GetPosition(Parent as Canvas).Y;
 
-            if (x < (Parent as Canvas).Width && x > 0)
-                    Canvas.SetLeft(this, x - Radius.Width / 2);
-
-            if (y < (Parent as Canvas).Height && y > 0)
-                    Canvas.SetTop(this, y - Radius.Width / 2);
+            if (x < (Parent as Canvas).Width && x > 0) 
+            {
+                ks.CordX = x;
+            }
+            if (y < (Parent as Canvas).Height && y > 0) 
+            {
+                ks.CordY = y;
+            }
         }
         #endregion
     }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -31,24 +32,26 @@ namespace MESHNETWORK
         {
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
+           
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Can.DataContext = Logic.Config.ColorBackGround;
+            Logic.w = this;
         }
 
         #region Удаление и добавление узлов
         private void AddPoint_Click(object sender, RoutedEventArgs e)
         {
-            Logic.Objects.Knots.Add(new KnotVisual(Mouse.GetPosition(Can)));
-            Can.Children.Add(Logic.Objects.Knots.Last() as KnotVisual);
+            Logic.Objects.Knots.Add(new KnotSave(Mouse.GetPosition(Can)));
+            Can.Children.Add(new KnotVisual(Logic.Objects.Knots.Last()));
         }
 
         private void DeletePoint_Click(object sender, RoutedEventArgs e)
         {
-            Can.Children.Remove(Logic.CurrentKnot);
-            Logic.Objects.Knots.Remove(Logic.CurrentKnot);
+            Logic.Objects.Knots.Remove(Logic.SelectVisualKnot.ks);
+            Can.Children.Remove(Logic.SelectVisualKnot);
         }
         #endregion
 
@@ -64,7 +67,7 @@ namespace MESHNETWORK
             SFD = new SaveFileDialog();
             SFD.FileName = "Графы.json";
             SFD.ShowDialog();
-            Logic.Json.SaveFile(Logic.Objects.KnotsSave, SFD.FileName);
+            Logic.Json.SaveFile(Logic.Objects.Knots, SFD.FileName);
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
@@ -76,7 +79,7 @@ namespace MESHNETWORK
             {
                 Logic.UpdateData();
                 Can.Children.Clear();
-                Logic.Json.OpenFile<KnotSave>(OFD.FileName);
+                Logic.Json.OpenFile(OFD.FileName);
                 CreateCanvas();
             }      
         }
@@ -93,13 +96,11 @@ namespace MESHNETWORK
         /// </summary>
         private void CreateCanvas() 
         {
-            foreach(KnotVisual knot in Logic.Objects.Knots) 
+            foreach(KnotSave knot in Logic.Objects.Knots) 
             {
-                Can.Children.Add(knot);
+                Can.Children.Add(new KnotVisual(knot));
             }
         }
-
-       
 
         private void SendServer_Click(object sender, RoutedEventArgs e)
         {

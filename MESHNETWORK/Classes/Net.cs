@@ -16,7 +16,7 @@ namespace MESHNETWORK.Classes
         public string author { get; set; }
         public string access { get; set; }
 
-        public List<IKnotSave> knotSaves { get; set; }
+        public List<KnotSave> knotSaves { get; set; }
 
         public Net(string Name, int CountSaves, string Author, string Access)
         {
@@ -24,10 +24,10 @@ namespace MESHNETWORK.Classes
             countNodes = CountSaves;
             author = Author;
             access = Access;
-            knotSaves = new List<IKnotSave>();
+            knotSaves = new List<KnotSave>();
         }
 
-        public Net(string Name, List<IKnotSave> KnotSaves, string Author, string Access) 
+        public Net(string Name, List<KnotSave> KnotSaves, string Author, string Access) 
         {
             name = Name;
             countNodes = KnotSaves.Count;
@@ -35,7 +35,7 @@ namespace MESHNETWORK.Classes
             access = Access;
             knotSaves = KnotSaves;
         }
-        public Net(string Name, List<IKnotSave> KnotSaves)
+        public Net(string Name, List<KnotSave> KnotSaves)
         {
             name = Name;
             countNodes = KnotSaves.Count;

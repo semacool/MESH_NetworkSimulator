@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MESHNETWORK.MyControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace MESHNETWORK.Classes
     /// </summary>
     class Logic
     {
+        public static MainWindow w;
+
         public static  Config Config = new Config();
 
         public static  Objects Objects = new Objects();
@@ -24,17 +27,16 @@ namespace MESHNETWORK.Classes
         /// </summary>
         static  public void UpdateData()
         {
-            SourceKnot = null;
-            TargetKnot = null;
-            SourceKnot = null;
-
+            SelectVisualKnot = null;
+            TargetVisualKnot = null;
+            SourceVisualKnot = null;
             Objects.Knots.Clear();
         }
 
         #region Текущие активные Элементы
-        public static MyControls.KnotVisual SourceKnot;
-        public static MyControls.KnotVisual CurrentKnot;
-        public static MyControls.KnotVisual TargetKnot;
+        public static KnotVisual SelectVisualKnot;
+        public static KnotVisual TargetVisualKnot;
+        public static KnotVisual SourceVisualKnot;
         #endregion
     }
 }

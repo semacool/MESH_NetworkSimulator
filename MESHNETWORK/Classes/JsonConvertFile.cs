@@ -22,7 +22,7 @@ namespace MESHNETWORK.Classes
         {
             JObject main = new JObject();
 
-            if (typeof(T) == typeof(IKnotSave))
+            if (typeof(T) == typeof(KnotSave))
             {
                 main["NextIndex"] = Logic.Objects.Knots.Count;
                 main["Knots"] = JArray.FromObject(List);
@@ -33,21 +33,16 @@ namespace MESHNETWORK.Classes
             File.WriteAllText(Path, json);
         }
 
-        public void OpenFile<T>(string Path) 
+        public void OpenFile(string Path) 
         {
             string json = File.ReadAllText(Path);
 
-            if(typeof(T) == typeof(KnotSave)) 
-            {
-                KnotVisual.NextId = JObject.Parse(json)["NextIndex"].Value<uint>();
+                KnotSave.NextId = JObject.Parse(json)["NextIndex"].Value<uint>();
 
-                IEnumerable<IKnotSave> enumerable = 
-                     JsonConvert.DeserializeObject<List<KnotSave>>
+                Logic.Objects.Knots = JsonConvert.DeserializeObject<List<KnotSave>>
                     (
                         JObject.Parse(json)["Knots"].ToString()
-                    );
-                Logic.Objects.KnotsSave = enumerable.ToList();//Ковариантность     
-            }
+                    ); 
         }
     }
 }

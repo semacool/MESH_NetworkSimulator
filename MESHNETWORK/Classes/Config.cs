@@ -11,7 +11,7 @@ namespace MESHNETWORK.Classes
     /// <summary>
     /// Класс для хранения настроек пользователя
     /// </summary>
-    class Config
+    public class Config
     {
         #region Цвета
         public string ColorBackGround { get; set; }
@@ -40,7 +40,6 @@ namespace MESHNETWORK.Classes
         {
             File.WriteAllText(@"SaveConfig\login.txt", Login);
             File.WriteAllText(@"SaveConfig\password.txt", Password);
-
         }
 
         private void FillConfigAutorization() 

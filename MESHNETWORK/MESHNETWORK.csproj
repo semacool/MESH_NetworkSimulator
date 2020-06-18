@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6651C438-3D5A-4B45-AB41-A6C0E82B2C11}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>MESHNETWORK</RootNamespace>
     <AssemblyName>MESHNETWORK</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -77,6 +77,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ServerS.cs" />
+    <Compile Include="MyControls\DataContextForNode.cs" />
     <Compile Include="Windows\ServerWindow.xaml.cs">
       <DependentUpon>ServerWindow.xaml</DependentUpon>
     </Compile>
@@ -101,7 +102,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Config.cs" />
-    <Compile Include="Classes\IKnotSave.cs" />
     <Compile Include="Classes\JsonConvertFile.cs" />
     <Compile Include="Classes\KnotSave.cs" />
     <Compile Include="Classes\Logic.cs" />

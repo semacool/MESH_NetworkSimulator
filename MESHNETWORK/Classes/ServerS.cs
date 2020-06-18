@@ -98,11 +98,11 @@ namespace MESHNETWORK.Classes
             return ShareList;
         }
 
-        public List<IKnotSave> ListNodes(Net Net)
+        public List<KnotSave> ListNodes(Net Net)
         {
             string Request = "list-nodes " + Net.name;
             SendRequest(Request);
-            List<IKnotSave> Nodes = new List<IKnotSave>();
+            List<KnotSave> Nodes = new List<KnotSave>();
             if (!Buffer.Last().StartsWith("list-node-fail"))
             {
                 for (int i = 1; i < Buffer.Count - 1; i++)
@@ -182,9 +182,9 @@ namespace MESHNETWORK.Classes
 
         private bool AddNodes(Net Net)
         {
-            foreach (IKnotSave knot in Net.knotSaves)
+            foreach (KnotSave knot in Net.knotSaves)
             {
-                string Request = $"add-node {Net.name} {knot.xCord} {knot.yCord} {knot.radius} {knot.name}";
+                string Request = $"add-node {Net.name} {knot.CordX} {knot.CordY} {knot.Radius} {knot.Name}";
                 SendRequest(Request);
             }
 

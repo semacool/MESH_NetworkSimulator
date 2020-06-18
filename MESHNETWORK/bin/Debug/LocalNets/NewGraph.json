@@ -1,0 +1,37 @@
+{
+  "NextIndex": 4,
+  "Knots": [
+    {
+      "typeNode": 0,
+      "id": 0,
+      "CordX": 341.0,
+      "CordY": 249.04,
+      "Radius": 160.0,
+      "Name": null
+    },
+    {
+      "typeNode": 1,
+      "id": 0,
+      "CordX": 192.0,
+      "CordY": 164.04,
+      "Radius": 196.0,
+      "Name": "Source"
+    },
+    {
+      "typeNode": 2,
+      "id": 0,
+      "CordX": 618.0,
+      "CordY": 216.04,
+      "Radius": 128.0,
+      "Name": "Source"
+    },
+    {
+      "typeNode": 0,
+      "id": 0,
+      "CordX": 476.0,
+      "CordY": 117.03999999999999,
+      "Radius": 224.0,
+      "Name": null
+    }
+  ]
+}

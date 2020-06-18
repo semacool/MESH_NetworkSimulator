@@ -65,9 +65,9 @@ namespace MESHNETWORK.Windows
             OFD.ShowDialog();
             if (OFD.FileName.EndsWith(".json"))
             {
-                Logic.Json.OpenFile<KnotSave>(OFD.FileName);
+                Logic.Json.OpenFile(OFD.FileName);
                 string NameFile = OFD.SafeFileName.Replace(".json", "Net");
-                Net Net = new Net(NameFile, Logic.Objects.KnotsSave);
+                Net Net = new Net(NameFile, Logic.Objects.Knots);
                 if (Logic.Server.AddNet(Net)) MessageBox.Show("Схема добавлена на сервер");
                 else MessageBox.Show("Произошла ошибка!");
             }
@@ -101,11 +101,11 @@ namespace MESHNETWORK.Windows
         {
             if (ListNets.SelectedItem == null) { MessageBox.Show("Выберите схему"); return; }
 
-            Logic.Objects.KnotsSave = Logic.Server.ListNodes(ListNets.SelectedItem as Net);
+            Logic.Objects.Knots = Logic.Server.ListNodes(ListNets.SelectedItem as Net);
             string Name = (ListNets.SelectedItem as Net).name;
             SFD.FileName = $"{Name}.json";
             SFD.ShowDialog();
-            Logic.Json.SaveFile(Logic.Objects.KnotsSave, SFD.FileName);
+            Logic.Json.SaveFile(Logic.Objects.Knots, SFD.FileName);
         }
 
         /// <summary>

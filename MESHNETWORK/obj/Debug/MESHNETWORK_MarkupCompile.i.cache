@@ -1,7 +1,7 @@
 ﻿MESHNETWORK
 
 
-exe
+winexe
 C#
 .cs
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\obj\Debug\
@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\App.xaml
 51373043664
 
-181204779205
+181812027339
 14-1159026343
 MyControls\KnotVisual.xaml;Windows\AutorizationPage.xaml;Windows\ColorPage.xaml;Windows\MainWindow.xaml;Windows\ServerWindow.xaml;
 
-True
+False
 
