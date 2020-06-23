@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MESHNETWORK.Windows"
         mc:Ignorable="d"
-        Title="AutorizationPage" Height="200" Width="300">
+        Title="AutorizationPage" Height="250" Width="300">
     <Window.Resources>
             <!--#region Стили -->
             <Style TargetType="TextBlock" x:Key="BigText">

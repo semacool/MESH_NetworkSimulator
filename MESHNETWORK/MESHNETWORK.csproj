@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -76,12 +76,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Messages\ConsoleMessage.cs" />
+    <Compile Include="Classes\Messages\Message.cs" />
+    <Compile Include="Classes\Messages\PingMessage.cs" />
+    <Compile Include="Classes\RouterKnot.cs" />
+    <Compile Include="Classes\Routers.cs" />
+    <Compile Include="Classes\Messages\SendMessage.cs" />
     <Compile Include="Classes\ServerS.cs" />
     <Compile Include="MyControls\DataContextForNode.cs" />
+    <Compile Include="MyControls\MessageVisual.xaml.cs">
+      <DependentUpon>MessageVisual.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CustomConsole.xaml.cs">
+      <DependentUpon>CustomConsole.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ServerWindow.xaml.cs">
       <DependentUpon>ServerWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MyControls\KnotVisual.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyControls\MessageVisual.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ColorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CustomConsole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

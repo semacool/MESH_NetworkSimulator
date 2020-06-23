@@ -26,7 +26,6 @@ namespace MESHNETWORK.Classes
             access = Access;
             knotSaves = new List<KnotSave>();
         }
-
         public Net(string Name, List<KnotSave> KnotSaves, string Author, string Access) 
         {
             name = Name;

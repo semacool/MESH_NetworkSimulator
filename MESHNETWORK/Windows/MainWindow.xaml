@@ -1,25 +1,28 @@
-﻿<Window x:Class="MESHNETWORK.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MESHNETWORK"
         xmlns:contr="clr-namespace:MESHNETWORK.MyControls"        
+        xmlns:Classes="clr-namespace:MESHNETWORK.Classes" x:Class="MESHNETWORK.MainWindow"        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <Style TargetType="TextBlock" x:Key="TBStyle">
-            <Setter Property="FontSize" Value="25"></Setter>
-            <Setter Property="Margin" Value="20,5,20,0"></Setter>
-            <Setter Property="Foreground" Value="#555555"></Setter>
+        <Style TargetType="{x:Type TextBlock}" x:Key="TBStyle">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
-        <Style TargetType="TextBox" x:Key="TBXStyle">
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Margin" Value="20,5,20,5"></Setter>
-            <Setter Property="Foreground" Value="#555555"></Setter>
-            <Setter Property="SelectionBrush" Value="#555555"></Setter>
-            <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
-            <Setter Property="Background" Value="#EEEEEE"></Setter>
+        <Style TargetType="{x:Type TextBox}" x:Key="TBXStyle">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="#555555"/>
+            <Setter Property="SelectionBrush" Value="#555555"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="#EEEEEE"/>
         </Style>
     </Window.Resources>
     <Grid>
@@ -29,61 +32,78 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <!--#region Меню -->
         <Menu Grid.Row="0" Panel.ZIndex="10">
             <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" Click="OpenFile_Click"></MenuItem>
-                <MenuItem Header="Сохранить" Click="SaveFile_Click" ></MenuItem>
+                <MenuItem Header="Открыть" Click="OpenFile_Click"/>
+                <MenuItem Header="Сохранить" Click="SaveFile_Click" />
             </MenuItem>
             <MenuItem Header="Настройки">
-                <MenuItem Header="Цвета" Click="ColorConfig_Click"></MenuItem>
+                <MenuItem Header="Цвета" Click="ColorConfig_Click"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Масштаб"></TextBlock>
-                    <Slider x:Name="ZoomSlider" MinWidth="200" Background="{x:Null}" Maximum="1" SmallChange="0.01" Value="1" Minimum="0.1"/>
+                    <TextBlock Text="Масштаб:"/>
+                    <Slider x:Name="ZoomSlider" MinWidth="200" Background="{x:Null}" Maximum="1" SmallChange="0.01" Value="1" Minimum="0.5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Замедление:"/>
+                    <Slider x:Name="SpeedSlider" MinWidth="200" Background="{x:Null}" Maximum="3" SmallChange="0.01" Value="{Binding Config.SpeedSecond}" Minimum="0.1">
+                        <Slider.DataContext>
+                            <Classes:Logic/>
+                        </Slider.DataContext>
+                    </Slider>
                 </StackPanel>
             </MenuItem>
             <MenuItem Header="Редактировать">
-                <MenuItem Header="Очистить поле" Click="ClearCanvas_Click"></MenuItem>
+                <MenuItem Header="Очистить поле" Click="ClearCanvas_Click"/>
             </MenuItem>
             <MenuItem Header="Сервер">
-                <MenuItem Header="Подключится к серверу" Click="SendServer_Click"></MenuItem>
+                <MenuItem Header="Подключится к серверу" Click="SendServer_Click"/>
             </MenuItem>
         </Menu>
         <!--#endregion-->
 
-        <!--#region Поле-->
-        <Canvas x:Name="Can" Grid.Row="1" Background="{Binding DataContext, RelativeSource={RelativeSource Self}}" Width="19200" Height="10800" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Canvas.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="{Binding Value, ElementName=ZoomSlider}" ScaleY="{Binding Value, ElementName=ZoomSlider}"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Canvas.RenderTransform>
-            <Canvas.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Добавить" Name="AddPoint" Click="AddPoint_Click"></MenuItem>
-                    <MenuItem Header="Удалить" Name="DeletePoint" Click="DeletePoint_Click"></MenuItem>
-                </ContextMenu>
-            </Canvas.ContextMenu>
-        </Canvas>
+        <ScrollViewer Grid.Row="1" PanningMode="HorizontalOnly" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+            <Canvas x:Name="Can"  Background="{Binding DataContext, RelativeSource={RelativeSource Self}}" Width="3840" Height="2160" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="{Binding Value, ElementName=ZoomSlider}" ScaleY="{Binding Value, ElementName=ZoomSlider}"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Canvas.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Добавить" x:Name="AddPoint" Click="AddPoint_Click"/>
+                        <MenuItem Header="Удалить" x:Name="DeletePoint" Click="DeletePoint_Click"/>
+                    </ContextMenu>
+                </Canvas.ContextMenu>
+            </Canvas>
+        </ScrollViewer>
         <!--#endregion-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" x:Name="Info">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFCFCFCF" Offset="1"/>
                     <GradientStop Color="White"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <StackPanel Orientation="Horizontal" Name="Info" Height="45">
-                <TextBlock Style="{StaticResource TBStyle}" Text="Название: "></TextBlock>
-                <TextBox Style="{StaticResource TBXStyle}" Text="{Binding Path=Name}" Width="100"/>
-                <TextBlock Style="{StaticResource TBStyle}" Text="Радиус: "></TextBlock>
-                <TextBox Style="{StaticResource TBXStyle}" Text="{Binding Path=Radius}" Width="100"></TextBox>
-                <TextBlock Style="{StaticResource TBStyle}" Text="{Binding StringFormat=X: {0}, Path=CordX}"></TextBlock>
-                <TextBlock Style="{StaticResource TBStyle}" Text="{Binding StringFormat=Y: {0}, Path=CordY}"></TextBlock>
-            </StackPanel>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource TBStyle}" Text="Название: "/>
+            <TextBox Grid.Column="1" Style="{StaticResource TBXStyle}" Text="{Binding Name}"/>
+            <TextBlock Grid.Column="2" Style="{StaticResource TBStyle}" Text="Радиус: "/>
+            <TextBox Grid.Column="3" Style="{StaticResource TBXStyle}" Text="{Binding Radius}"/>
+            <TextBlock Grid.Column="4" Style="{StaticResource TBStyle}" Text="{Binding CordX, StringFormat=X: \{0\}}"/>
+            <TextBlock Grid.Column="5" Style="{StaticResource TBStyle}" Text="{Binding CordY, StringFormat=Y: \{0\}}"/>
+            <Button Grid.Column="6" Content="Консоль" Click="ButConsole_Click"/>
         </Grid>
     </Grid>
 </Window>

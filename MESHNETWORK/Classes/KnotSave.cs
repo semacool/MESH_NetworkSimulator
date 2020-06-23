@@ -17,12 +17,12 @@ namespace MESHNETWORK.Classes
 
         public static uint NextId = 0;
 
-        public uint id { get; private set; }
+        public uint id { get; set; }
 
         double xCord;
         public double CordX
         {
-            get { return xCord; }
+            get { return Math.Round(xCord); }
             set
             {
                 xCord = value;
@@ -33,7 +33,7 @@ namespace MESHNETWORK.Classes
         double yCord;
         public double CordY
         {
-            get { return yCord; }
+            get { return Math.Round(yCord); }
             set
             {
                 yCord = value;
@@ -102,9 +102,10 @@ namespace MESHNETWORK.Classes
             this.Name = Name;
             this.typeNode = TypeNode;
         }
-        public KnotSave()
-        {
-        }
+        public KnotSave(){}
+
+     
+
     }
     public enum TypeNode {common, source, target}
 }

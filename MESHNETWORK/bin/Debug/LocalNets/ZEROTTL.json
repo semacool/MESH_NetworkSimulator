@@ -1,0 +1,173 @@
+{
+  "NextIndex": 21,
+  "Knots": [
+    {
+      "typeNode": 0,
+      "id": 0,
+      "CordX": 904.61538461538464,
+      "CordY": 507.29538461538459,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 1,
+      "CordX": 775.38461538461536,
+      "CordY": 642.98769230769233,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 2,
+      "CordX": 1037.0769230769231,
+      "CordY": 762.52615384615387,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 3,
+      "CordX": 904.61538461538464,
+      "CordY": 634.91076923076923,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 4,
+      "CordX": 778.61538461538464,
+      "CordY": 764.14153846153852,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 5,
+      "CordX": 1159.8461538461538,
+      "CordY": 647.83384615384614,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 6,
+      "CordX": 1156.6153846153845,
+      "CordY": 759.29538461538471,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 7,
+      "CordX": 1151.7692307692307,
+      "CordY": 513.75692307692316,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 1,
+      "id": 8,
+      "CordX": 697.84615384615381,
+      "CordY": 431.37230769230774,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 9,
+      "CordX": 907.84615384615381,
+      "CordY": 765.75692307692316,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 10,
+      "CordX": 1033.8461538461538,
+      "CordY": 636.52615384615387,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 11,
+      "CordX": 1033.8461538461538,
+      "CordY": 510.52615384615387,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 12,
+      "CordX": 780.23076923076928,
+      "CordY": 508.91076923076923,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 2,
+      "id": 13,
+      "CordX": 1465.1538461538462,
+      "CordY": 1239.0646153846153,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 14,
+      "CordX": 780.23076923076928,
+      "CordY": 883.68000000000006,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 15,
+      "CordX": 898.15384615384619,
+      "CordY": 888.52615384615387,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 16,
+      "CordX": 1029.0,
+      "CordY": 888.52615384615387,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 17,
+      "CordX": 1159.8461538461538,
+      "CordY": 880.44923076923078,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 18,
+      "CordX": 1389.2307692307693,
+      "CordY": 1146.9876923076922,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 19,
+      "CordX": 1310.0769230769231,
+      "CordY": 1064.6030769230767,
+      "Radius": 300.0,
+      "Name": null
+    },
+    {
+      "typeNode": 0,
+      "id": 20,
+      "CordX": 1237.3846153846155,
+      "CordY": 969.29538461538471,
+      "Radius": 300.0,
+      "Name": null
+    }
+  ]
+}

@@ -19,11 +19,17 @@ namespace MESHNETWORK.Classes
         public string ColorSource { get; set; }
         public string ColorTarget { get; set; }
         public string ColorSelect { get; set; }
+        public bool RadiusON_OFF{ get; set; }
+
         #endregion
 
         #region Авторизация
         public string Login { get; set; }
-        public string Password { get; set; } 
+        public string Password { get; set; }
+        #endregion
+
+        #region Симуляция
+        public double SpeedSecond { get; set; } 
         #endregion
 
         public Config() 
@@ -33,6 +39,8 @@ namespace MESHNETWORK.Classes
              ColorSource = "#FF62B462";
              ColorTarget = "#FFC75252";
              ColorSelect = "#FF5272C7";
+             SpeedSecond = 0.3;
+             RadiusON_OFF = true;
              FillConfigAutorization();
         }
 

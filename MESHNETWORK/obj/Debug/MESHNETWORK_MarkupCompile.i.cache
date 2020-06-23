@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\semac\source\repos\MESHNETWORK\MESHNETWORK\App.xaml
-51373043664
+71393967244
 
-181812027339
+26-695357933
 14-1159026343
-MyControls\KnotVisual.xaml;Windows\AutorizationPage.xaml;Windows\ColorPage.xaml;Windows\MainWindow.xaml;Windows\ServerWindow.xaml;
+MyControls\KnotVisual.xaml;MyControls\MessageVisual.xaml;Windows\AutorizationPage.xaml;Windows\ColorPage.xaml;Windows\CustomConsole.xaml;Windows\MainWindow.xaml;Windows\ServerWindow.xaml;
 
-False
+True
 

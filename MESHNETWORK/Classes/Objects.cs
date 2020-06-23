@@ -1,6 +1,8 @@
 ﻿using MESHNETWORK.MyControls;
+using MESHNETWORK.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +18,11 @@ namespace MESHNETWORK.Classes
 
         public List<Net> Nets { get; set; }
 
+
         public Objects()
         {
             Knots = new List<KnotSave>();
             Nets = new List<Net>();
-        }      
+        }
     }
 }

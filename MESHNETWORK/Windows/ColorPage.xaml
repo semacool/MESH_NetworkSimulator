@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MESHNETWORK.Windows"
         mc:Ignorable="d"
-        Title="ColorPage" Height="350" Width="300">
+        Title="ColorPage" Height="400" Width="300">
     <Window.Resources>
         <!--#region Стили -->
         <Style TargetType="TextBlock" x:Key="BigText">

@@ -148,7 +148,7 @@ namespace MESHNETWORK.MyControls
             Logic.TargetVisualKnot = this;
             Logic.TargetVisualKnot.ks.typeNode = TypeNode.target;
             Logic.TargetVisualKnot.Point.Style = Resources["Target"] as Style;
-        } 
+        }
         #endregion
 
         #region Изменение позиции и радиуса

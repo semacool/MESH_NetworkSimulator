@@ -14,13 +14,15 @@ namespace MESHNETWORK.Classes
     {
         public static MainWindow w;
 
-        public static  Config Config = new Config();
+        public static Config Config { get; set; } = new Config();
 
-        public static  Objects Objects = new Objects();
+        public static  Objects Objects { get; set; } = new Objects();
 
-        public static JsonConvertFile Json = new JsonConvertFile();
+        public static JsonConvertFile Json { get; set; } = new JsonConvertFile();
 
-        public static ServerS Server = new ServerS();
+        public static ServerS Server { get; set; } = new ServerS();
+
+        public static Routers Router { get; set; } = new Routers();
 
         /// <summary>
         /// Очищение интерфейс данных  
@@ -31,6 +33,7 @@ namespace MESHNETWORK.Classes
             TargetVisualKnot = null;
             SourceVisualKnot = null;
             Objects.Knots.Clear();
+            Router.Knots.Clear();
         }
 
         #region Текущие активные Элементы

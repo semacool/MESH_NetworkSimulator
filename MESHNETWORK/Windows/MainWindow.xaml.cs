@@ -31,25 +31,28 @@ namespace MESHNETWORK
         public MainWindow()
         {
             InitializeComponent();
-            this.Loaded += MainWindow_Loaded;
-           
+            this.Loaded += MainWindow_Loaded;  
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Can.DataContext = Logic.Config.ColorBackGround;
             Logic.w = this;
+            Logic.Router.Start();
         }
 
         #region Удаление и добавление узлов
         private void AddPoint_Click(object sender, RoutedEventArgs e)
         {
             Logic.Objects.Knots.Add(new KnotSave(Mouse.GetPosition(Can)));
+            Logic.Router.Knots.Add(new RouterKnot(Logic.Objects.Knots.Last()));
             Can.Children.Add(new KnotVisual(Logic.Objects.Knots.Last()));
         }
 
         private void DeletePoint_Click(object sender, RoutedEventArgs e)
         {
+            uint id = Logic.SelectVisualKnot.ks.id;
+            Logic.Router.Knots.Remove(Logic.Router.Knots.Find(k => k.Knot.id == id));
             Logic.Objects.Knots.Remove(Logic.SelectVisualKnot.ks);
             Can.Children.Remove(Logic.SelectVisualKnot);
         }
@@ -100,11 +103,32 @@ namespace MESHNETWORK
             {
                 Can.Children.Add(new KnotVisual(knot));
             }
+            Logic.Router.CreateAll();
         }
 
         private void SendServer_Click(object sender, RoutedEventArgs e)
         {
             new AutorizationPage().ShowDialog();
+        }
+
+        private void ButConsole_Click(object sender, RoutedEventArgs e)
+        {
+            RouterKnot RKnot = Logic.Router.Knots.Find(k => k.Knot.id == Logic.SelectVisualKnot.ks.id);
+            RKnot.Console = new CustomConsole(Logic.SelectVisualKnot.ks.id);
+            RKnot.Console.Show();
+        }
+
+        public void AddMessage(KnotSave Source, KnotSave Target)
+        {
+            Point Start = new Point(Source.CordX, Source.CordY);
+            Point End = new Point(Target.CordX, Target.CordY);
+            MessageVisual ms = new MessageVisual(Start, End);
+            Can.Children.Add(ms);
+        }
+
+        public void DeleteMessage(MessageVisual MessageVisual)
+        {
+            Can.Children.Remove(MessageVisual);
         }
     }
 }

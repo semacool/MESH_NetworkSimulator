@@ -1,0 +1,20 @@
+﻿<Window x:Class="MESHNETWORK.Windows.CustomConsole"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MESHNETWORK.Windows"
+        mc:Ignorable="d"
+        Title="CustomConsole" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ListAnswers" Grid.Row="0">
+        </ListBox>
+        <TextBox Grid.Row="1" FontSize="15" Name="InputText"></TextBox>
+        <Button  Grid.Row="1" HorizontalAlignment="Right" FontSize="15" Click="Send_Click">Отправить</Button>
+
+    </Grid>
+</Window>

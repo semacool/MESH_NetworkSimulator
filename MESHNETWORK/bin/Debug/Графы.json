@@ -1,0 +1,13 @@
+{
+  "NextIndex": 1,
+  "Knots": [
+    {
+      "typeNode": 0,
+      "id": 0,
+      "CordX": 366.0,
+      "CordY": 158.07999999999998,
+      "Radius": 100.0,
+      "Name": null
+    }
+  ]
+}

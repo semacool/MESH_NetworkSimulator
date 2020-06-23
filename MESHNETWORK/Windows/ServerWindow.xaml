@@ -79,7 +79,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource SmallText}" x:Name="Name" Grid.Column="0" Text="{Binding Path=SelectedItem.name, ElementName=ListNets}"></TextBlock>
+            <TextBlock Style="{StaticResource SmallText}" x:Name="NameNet" Grid.Column="0" Text="{Binding Path=SelectedItem.name, ElementName=ListNets}"></TextBlock>
             <TextBlock Style="{StaticResource SmallText}" x:Name="Count" Grid.Column="1" Text="{Binding Path=SelectedItem.countNodes, ElementName=ListNets}"></TextBlock>
             <TextBlock Style="{StaticResource SmallText}" x:Name="Author" Grid.Column="2" Text="{Binding Path=SelectedItem.author, ElementName=ListNets}"></TextBlock>
             <Button Style="{StaticResource SaveBut}"  x:Name="ShowShares" Grid.Column="3" Content="Люди с доступом" Click="ShowShares_Click"></Button>
